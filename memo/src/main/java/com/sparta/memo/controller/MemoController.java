@@ -34,4 +34,25 @@ public class MemoController {
         return memoList.values().stream().map(MemoResponseDto::new).toList();
     }
 
+    @PutMapping("/memos/{id}")
+    public Long updateMemo(@PathVariable Long id, @RequestBody MemoRequestDto requestDto) {
+        if (!memoList.containsKey(id)) {
+            throw new IllegalArgumentException("존재하지 않는 메모입니다.");
+        }
+
+        Memo memo = memoList.get(id);
+        memo.update(requestDto);
+        return id;
+    }
+
+    @DeleteMapping("/memos/{id}")
+    public Long deleteMemo(@PathVariable Long id) {
+        if (!memoList.containsKey(id)) {
+            throw new IllegalArgumentException("존재하지 않는 메모입니다.");
+        }
+
+        memoList.remove(id);
+        return id;
+    }
+
 }
