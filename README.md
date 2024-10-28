@@ -1,1 +1,1 @@
-# spartacodingclub-spring
+# 웹개발의 봄 Spring
